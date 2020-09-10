@@ -12,7 +12,6 @@
 namespace NaeshLibrary.Extensions
 {
     using System;
-    using System.IO;
     using System.Security.Cryptography;
     using System.Text;
 
@@ -61,11 +60,6 @@ namespace NaeshLibrary.Extensions
         public static bool IsInvalidPath(this string path)
         {
             return ContainsInvalidPathCharacters(path);
-        }
-
-        public static bool IsLocalPath(this string path)
-        {
-            return File.Exists(path);
         }
 
         public static string Prefix(this string target, string prefix)

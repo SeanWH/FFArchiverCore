@@ -17,6 +17,14 @@ namespace NaeshLibrary.Tests
 
     public class StringExtensionsShould
     {
+        [Theory, InlineData("target", "ed", "targeted")]
+        public void ReturnAffixAppendedToTarget(string target, string affix, string expected)
+        {
+            string result = target.Affix(affix);
+
+            Assert.Equal(expected, result);
+        }
+
         [Theory, StringExtensionsHashTestData]
         public void ReturnCorrectHashValue(string testVal, int expected)
         {
@@ -32,6 +40,12 @@ namespace NaeshLibrary.Tests
             Assert.False(isBadPathString);
         }
 
+        [Theory, InlineData("pre", "fix", "prefix")]
+        public void ReturnPrefixPrependedToTarget(string prefix, string target, string expected)
+        {
+            Assert.Equal(expected, target.Prefix(prefix));
+        }
+
         [Theory, StringExtensionArrayTestData]
         public void ReturnTrueIfAnyElementsAreNullOrEmptyOrWhitespace(string[] testArray, bool expected)
         {
@@ -39,12 +53,17 @@ namespace NaeshLibrary.Tests
             Assert.Equal(expected, val);
         }
 
-        [Fact]
-        public void ReturnTrueIfContainsInvalidPathCharacters()
+        [Theory, InlineData("<this is a bad path* string?>")]
+        public void ReturnTrueIfContainsInvalidPathCharacters(string test)
         {
-            var test = "<this is a bad path* string?>";
             bool isBadPathString = test.IsInvalidPath();
             Assert.True(isBadPathString);
+        }
+
+        [Theory, InlineData("This! is; a. test: string, to strip.", "This is a test string to strip")]
+        public void StripAllPunctuation(string test, string expected)
+        {
+            Assert.Equal(expected, test.StripPunctuation());
         }
     }
 }

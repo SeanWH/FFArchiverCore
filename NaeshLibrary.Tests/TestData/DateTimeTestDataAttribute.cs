@@ -22,6 +22,7 @@ namespace NaeshLibrary.Tests.TestData
         {
             yield return new object[] { 1000000000L, new DateTime(2001, 09, 09, 1, 46, 40, DateTimeKind.Utc) };
             yield return new object[] { 0L, new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc) };
+            yield return new object[] { 99999999999L, new DateTime(5138, 11, 16, 9, 46, 39, DateTimeKind.Utc) };
         }
     }
 }
